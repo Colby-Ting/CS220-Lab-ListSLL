@@ -129,20 +129,53 @@
  }
  void selSortLinkedList(LinkedList* list)
  {
-        // if(list->head == NULL) {
-        //     return; // List is empty
-        // }
-        // Node* i = list->head;
-        // while(i != NULL) {
-        //     Node* minNode = i;
-        //     Node* j = i->next;
-        //     while(j != NULL) {
-        //         if(j->data < minNode->data) {
-        //             minNode = j;
+        if(list->head == NULL) {
+            return; // List is empty
+        }
+        Node* i = list->head;
+        while(i != NULL) {
+            Node* minNode = i;
+            Node* j = i->next;
+            while(j != NULL) {
+                if(j->data < minNode->data) {
+                    minNode = j;
+                    j = j->next;
+                }
+            }
+            double temp = i->data;
+            i->data = minNode->data;
+            minNode->data = temp;
+            i = i->next;
+        }
+        
+
  }
  void insertSortLinkedList(LinkedList* list)
  {
-        // Function implementation goes here
+        if(list->head == NULL) {
+            return; // List is empty
+        }
+        Node* sorted = NULL;
+        Node* i = list->head;
+        while(i != NULL) {
+            Node* next = i->next;
+            if(sorted == NULL || i->data < sorted->data){
+                i->next = sorted;
+                sorted = i;
+            } else{
+                Node* search = sorted;
+                while (search->next != NULL && search->next->data < i->data)
+                {
+                    search = search->next;
+                }
+                i->next = search->next;
+                search->next = i;
+                
+            }
+            i = next;
+        }
+        list->head = sorted;
+
  } void appendElementLinkedList(LinkedList* list, double element)
  {
         Node* newNode = (Node*)malloc(sizeof(Node));
