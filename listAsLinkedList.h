@@ -1,7 +1,7 @@
 /** 
  * ===========================================================
- * Name: 
- * Section: 
+ * Name: C3C Colby Ting
+ * Section: T1A
  * Project: Implementation of Linked List Library
  * Purpose: List ADT as linked list
  * ===========================================================
