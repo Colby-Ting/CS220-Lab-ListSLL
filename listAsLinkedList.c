@@ -8,14 +8,21 @@
  */
 #include "listAsLinkedList.h"
 #include <stdio.h>
+#include<stdlib.h>
+
+
  LinkedList* createLinkedList(){
-        
-        return NULL; // Placeholder return
+        LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
+        if(list == NULL){
+            list->head = NULL;
+            list->tail = NULL;
+            list->numberOfElements = 0;
+        }
+        return list;
  }
- int printLinkedList(LinkedList* list){
+ void printLinkedList(LinkedList* list){
         if(list->head == NULL) {
             printf("List is empty.\n");
-            return 0;
         }
         Node* current = list->head;
         while(current != NULL) {
@@ -23,7 +30,6 @@
             current = current->next;
         }
         printf("NULL\n");
-        return 1;
  }
  double getElementLinkedList(LinkedList* list, int position)
  {
@@ -125,7 +131,8 @@
             current = current->next;
             position++;
         }
-        return -1; // Placeholder return
+        return -1;
+        
  }
  void selSortLinkedList(LinkedList* list)
  {
@@ -139,8 +146,9 @@
             while(j != NULL) {
                 if(j->data < minNode->data) {
                     minNode = j;
-                    j = j->next;
+                    
                 }
+                j = j->next;
             }
             double temp = i->data;
             i->data = minNode->data;
@@ -209,5 +217,4 @@
             current = nextNode;
         }
         free(list);
-    // Function implementation goes here
  }
